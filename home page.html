@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://unpkg.com/swup@4"></script>
+    <script>
+      const swup = new Swup();
+    </script>
+    <script defer src="nav.js"></script>
+   
+
+    <!-- Boxicons CDN for Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .notification-box, .important-dates-box {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        h2 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+        .notifications-list, .important-dates-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .notifications-list li, .important-dates-list li {
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f9fbfe;
+            border-radius: 8px;
+            border: 1px solid #e0e7f3;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .notifications-list li:hover, .important-dates-list li:hover {
+            background-color: #e5edfb;
+            transform: translateY(-3px);
+        }
+        .notifications-list li a, .important-dates-list li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+        }
+        .notifications-list li a::before, .important-dates-list li a::before {
+            content: "\1F4E3"; /* Adds a megaphone icon for notifications */
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        .important-dates-list li a::before {
+            content: "\1F4C5"; /* Adds a calendar icon for important dates */
+        }
+        /* Date Styling */
+        .date {
+            font-size: 14px;
+            color: #777;
+            font-style: italic;
+        }
+        @media(max-width: 767px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                height: auto;
+            }
+
+            nav, main, aside {
+                height: auto;
+            }
+        }
+        .sidebar ul li a.active {
+    background-color: white; /* Change background for active link */
+    color: rgb(195, 206, 206); /* Change text color for active link */
+}
+    </style>
+</head>
+<body>
+
+ 
+    <div id="sidebar"></div>
+    <div class="container">
+        <!-- Notifications Box -->
+        <div class="notification-box">
+            <h2>Notifications</h2>
+            <ul class="notifications-list">
+                <!-- Notifications -->
+                <li>
+                    <a href="profile_update.php">Profile Updated Successfully</a>
+                    <span class="date">(September 10, 2024)</span>
+                </li>
+                <li>
+                    <a href="upload_assignment.php">New Assignment Uploaded</a>
+                    <span class="date">(September 9, 2024)</span>
+                </li>
+                <li>
+                    <a href="upload_results.php">Results for Semester 2 Uploaded</a>
+                    <span class="date">(September 8, 2024)</span>
+                </li>
+                <li>
+                    <a href="upload_certificate.php">New Internship Certificate Uploaded</a>
+                    <span class="date">(September 7, 2024)</span>
+                </li>
+                <li>
+                    <a href="update_schedule.php">New Class Schedule Available</a>
+                    <span class="date">(September 6, 2024)</span>
+                </li>
+                <!-- More notifications can be added here -->
+            </ul>
+        </div>
+
+        <!-- Important Dates Box -->
+        <div class="important-dates-box">
+            <h2>Important Dates</h2>
+            <ul class="important-dates-list">
+                <!-- Holidays, Vacations, Assignment Due Dates -->
+                <li>
+                    <a href="holiday_details.php">Holiday: Diwali Vacation (Start Date: November 10, 2024)</a>
+                    <span class="date">(Announced: September 5, 2024)</span>
+                </li>
+                <li>
+                    <a href="vacation_details.php">Winter Vacation (December 20, 2024 - January 5, 2025)</a>
+                    <span class="date">(Announced: September 1, 2024)</span>
+                </li>
+                <li>
+                    <a href="assignment_due.php">Assignment Due: Machine Learning Assignment (Due Date: October 15, 2024)</a>
+                    <span class="date">(Announced: August 29, 2024)</span>
+                </li>
+                <li>
+                    <a href="exam_dates.php">Mid-term Exams (Start Date: November 25, 2024)</a>
+                    <span class="date">(Announced: August 25, 2024)</span>
+                </li>
+                <!-- More important dates can be added here -->
+            </ul>
+        </div>
+    </div>
+ <script>
+   let btn = document.querySelector('#btn');
+            let sidebar = document.querySelector('.sidebar');
+            
+            btn.onclick=function (){
+                sidebar.classList.toggle('active');
+            };
+ </script>
+</body>
+</html>

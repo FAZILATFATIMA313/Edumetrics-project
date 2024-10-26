@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="register.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Registration Page</title>
+</head>
+<body>
+    <!-- EDUMETRICS Logo at the top right -->
+    <div class="logo-container">
+        <i class='bx bxs-school'></i> <!-- College building icon -->
+        <span>EDUMETRICS</span>
+    </div>
+
+    <div class="container">
+        <center>
+            <h1>Student Registration Form</h1>
+        </center>
+        <hr>
+        <form action="submit.php" method="post">
+            
+            <!-- First Name -->
+            <label>First Name</label>
+            <input type="text" name="firstname" placeholder="First Name" size="15" required />
+            
+            <!-- Middle Name -->
+            <label>Middle Name</label>
+            <input type="text" name="middlename" placeholder="Middle Name" size="15" required />
+            
+            <!-- Last Name -->
+            <label>Last Name</label>
+            <input type="text" name="lastname" placeholder="Last Name" size="15" required />
+
+            <!-- Semester and Course -->
+            <div class="option">
+                <label>Semester:</label>
+                <select name="semester" class="option" required>
+                    <option value="" disabled selected>Semester</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+
+                <label>Course:</label>
+                <select name="course" class="option" required>
+                    <option value="" disabled selected>Course</option>
+                    <option value="CO">CO</option>
+                    <option value="CIVIL">CIVIL</option>
+                    <option value="MECH">MECH</option>
+                    <option value="DS">DS</option>
+                    <option value="AIML">AIML</option>
+                </select>
+            </div>
+
+            <!-- Roll No -->
+            <label>Roll No:</label>
+            <input type="text" name="rollno" placeholder="Roll Number" size="15" required />
+
+            <!-- Gender -->
+            <div>
+                <label>Gender:</label><br>
+                <input type="radio" value="m" name="gender" checked> Male
+                <input type="radio" value="f" name="gender"> Female
+                <input type="radio" value="o" name="gender"> Other
+            </div>
+
+            <!-- Phone -->
+            <label for="phone">Phone:</label>
+            <input type="text" name="phone" placeholder="Enter Phone Number" size="15" required />
+
+            <!-- Address -->
+            <label for="address">Current Address:</label>
+            <textarea name="address" cols="80" rows="5" placeholder="Current Address" required></textarea>
+
+            <!-- Email -->
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" name="email" required />
+            
+            <!-- Password -->
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required />
+            
+            <!-- Re-type Password -->
+            <label for="repassword"><b>Re-type Password</b></label>
+            <input type="password" placeholder="Retype Password" name="repassword" required />
+            
+            <!-- Submit Button -->
+            <button type="submit" class="registerbtn">Register</button>
+        </form>
+    </div>
+</body>
+</html>

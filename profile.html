@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script defer src="nav.js"></script>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile and Certificates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .profile-box, .certificate-box, .upload-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .profile-details, .certificate-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-details label, .certificate-list label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .profile-details span, .certificate-list span {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .certificate-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .certificate-list ul li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .certificate-list ul li a {
+            text-decoration: none;
+            color: #0b0e55;
+            padding: 5px 10px;
+            background-color: #94b9d1;
+            border-radius: 5px;
+        }
+        .certificate-list ul li a:hover {
+            background-color: #262a7d;
+            color: white;
+        }
+        .upload-box form {
+            display: flex;
+            flex-direction: column;
+        }
+        .upload-box input[type="text"], .upload-box input[type="file"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .upload-box button {
+            padding: 10px;
+            background-color: #191d5e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-box button:hover {
+            background-color:  #262a7d;
+        }
+      
+    </style>
+</head>
+<body>
+    
+    <div id="sidebar"></div>
+    <div class="container">
+
+        <!-- Student Profile Section -->
+        <div class="profile-box">
+            <h2>Student Profile</h2>
+            <div class="profile-details">
+                <label for="fullname">Full Name:</label>
+                <span id="fullname">John smith</span>
+
+                <label for="rollno">Roll No:</label>
+                <span id="rollno">12CS20</span>
+
+                <label for="branch">Branch:</label>
+                <span id="branch">Computer Science</span>
+
+                <label for="sem">Semester:</label>
+                <span id="sem">2nd</span>
+
+                <label for="year">Year:</label>
+                <span id="year">3rd Year</span>
+
+                <label for="phone">Phone No:</label>
+                <span id="phone">9876543210</span>
+
+                <label for="address">Address:</label>
+                <span id="address">123 Main Street,Panvel,India</span>
+            </div>
+        </div>
+
+        <!-- Certificate Section -->
+        <div class="certificate-box">
+            <h2>Certificates / Results</h2>
+            <div class="certificate-list">
+                <ul id="certificateList">
+                    <!-- Existing certificates will be listed here -->
+                    <li>
+                        <span>Internship Certificate - ABC Corp</span>
+                        <a href="path-to-internship.pdf" download>Download</a>
+                    </li>
+                    <li>
+                        <span>Result Sheet - Semester 1</span>
+                        <a href="path-to-result.pdf" download>Download</a>
+                    </li>
+                    <li>
+                        <span>Result Sheet - Semester 2</span>
+                        <a href="path-to-result.pdf" download>Download</a>
+                    </li>
+                    <li>
+                        <span>Course certificate - Advanced Python</span>
+                        <a href="path-to-result.pdf" download>Download</a>
+                    </li>
+                    <!-- More certificates can be added dynamically here -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Upload New Certificate Section -->
+        <div class="upload-box">
+            <h2>Add New Certificate</h2>
+            <form action="upload_certificate.php" method="POST" enctype="multipart/form-data">
+                <label for="certificate_name">Certificate Name:</label>
+                <input type="text" name="certificate_name" id="certificate_name" placeholder="Enter certificate name" required>
+
+                <label for="certificate_file">Upload Certificate:</label>
+                <input type="file" name="certificate_file" id="certificate_file" required>
+
+                <button type="submit">Upload Certificate</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

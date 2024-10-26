@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="nav.js"></script>
+    <title>Settings</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 50px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            color: #333;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #191d5e;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .form-group input, 
+        .form-group textarea, 
+        .form-group button {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            background-color: #f9f9f9;
+            box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group button {
+            background-color:#191d5e;
+            color: white;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #252b95;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Password container with eye icon */
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        /* FAQ Dropdown */
+        .dropdown {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            border: none;
+            box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.1);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:focus {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .support-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .support-section div {
+            flex: 1 1 45%;
+            min-width: 220px;
+        }
+
+        .support-section a {
+            display: block;
+            text-decoration: none;
+            font-size: 18px;
+            color:#191d5e;
+            font-weight: 600;
+            padding: 10px 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .support-section a:after {
+            content: '→';
+            position: absolute;
+            right: 0;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .support-section a:hover {
+            color: #252b95;
+        }
+
+        .support-section a:hover:after {
+            opacity: 1;
+            transform: translateX(10px);
+        }
+
+        .support-section p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input[type="file"] {
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%; /* Could be more or less, depending on screen size */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Form styles */
+        .support-form input[type="text"], .support-form input[type="email"], .support-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .support-form textarea {
+            resize: none;
+        }
+
+        .support-form button {
+            background-color: #191d5e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .support-form button:hover {
+            background-color: #191d5e;
+        }
+
+        /* FAQ styles */
+        .faq-item {
+            margin-bottom: 15px;
+        }
+
+        .faq-item button {
+            width: 100%;
+            background-color: #191d5e;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            text-align: left;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-item button:hover {
+            background-color: #252b95;
+        }
+
+        .faq-item button.active {
+            background-color: #333;
+        }
+
+        .faq-item .faq-answer {
+            padding: 0 18px;
+            background-color: #f9f9f9;
+            display: none;
+            overflow: hidden;
+            border-radius: 0 0 5px 5px;
+            box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item .faq-answer p {
+            padding: 18px 0;
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="sidebar"></div>
+    <div class="container">
+        <h1>Settings</h1>
+
+        <!-- Change Password Section -->
+        <div class="section">
+            <h2>Change Password</h2>
+            <div class="form-group">
+                <label for="old-password">Old Password</label>
+                <div class="password-container">
+                    <input type="password" id="old-password" name="old-password" placeholder="Enter Old Password">
+                    <span class="toggle-password" onclick="togglePassword('old-password')">👁️</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="new-password">New Password</label>
+                <div class="password-container">
+                    <input type="password" id="new-password" name="new-password" placeholder="Enter New Password">
+                    <span class="toggle-password" onclick="togglePassword('new-password')">👁️</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm New Password</label>
+                <div class="password-container">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm New Password">
+                    <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Change Password</button>
+            </div>
+        </div>
+
+        <!-- Grievance Section -->
+        <div class="section">
+            <h2>Grievance Form</h2>
+            <div class="form-group">
+                <label for="grievance-title">Grievance Title</label>
+                <input type="text" id="grievance-title" name="grievance-title" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label for="grievance-details">Details</label>
+                <textarea id="grievance-details" name="grievance-details" rows="5" placeholder="Describe your issue"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="grievance-attachment">Upload Attachment (Optional)</label>
+                <input type="file" id="grievance-attachment" name="grievance-attachment">
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit Grievance</button>
+            </div>
+        </div>
+
+        <!-- Support Ticket Section -->
+        <div class="section">
+            <h2>Support Ticket</h2>
+            <div class="form-group">
+                <label for="support-title">Ticket Title</label>
+                <input type="text" id="support-title" name="support-title" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label for="support-details">Details</label>
+                <textarea id="support-details" name="support-details" rows="5" placeholder="Describe your issue"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="support-attachment">Upload Attachment (Optional)</label>
+                <input type="file" id="support-attachment" name="support-attachment">
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit Ticket</button>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="section">
+            <h2>FAQ</h2>
+
+            <div class="faq-item">
+                <button onclick="toggleFaq(this)">How do I reset my password?</button>
+                <div class="faq-answer">
+                    <p>To reset your password, go to the 'Change Password' section, enter your old password, then input and confirm your new password.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button onclick="toggleFaq(this)">How can I submit a grievance?</button>
+                <div class="faq-answer">
+                    <p>To submit a grievance, fill out the 'Grievance Form' with your title, details, and any optional attachment, then click 'Submit Grievance'.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button onclick="toggleFaq(this)">Can I track my submitted grievances?</button>
+                <div class="faq-answer">
+                    <p>Yes, after submitting a grievance, you can track its status in the grievance management section under your profile.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+        }
+
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            button.classList.toggle("active");
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+            } else {
+                answer.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

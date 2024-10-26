@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="nav.js"></script>
+    <title>Work</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            margin-left:550px ;
+            margin-right: 30px;
+            margin-top: 30px;
+            font-size: 32px;
+        }
+
+        /* Container */
+        .container {
+            
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-left: 230px;
+            margin-right: 50px;
+        }
+
+        /* Subject Box Styling */
+        .subject-box {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .subject-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .subject-box h3 {
+            margin: 0;
+            color: #333;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* Upload Section Styling */
+        .upload-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .upload-section label {
+            font-weight: bold;
+            color: #444;
+            font-size: 16px;
+        }
+
+        .upload-section input[type="file"] {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .upload-section input[type="file"]::file-selector-button {
+            padding: 10px;
+            background-color: #191d5e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .upload-section input[type="file"]::file-selector-button:hover {
+            background-color: #262a7d;
+        }
+
+        .upload-section button {
+            padding: 12px 25px;
+            background-color: #191d5e;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .upload-section button:hover {
+            background-color: #262a7d;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* File List Section */
+        .file-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 15px;
+            width: 40%;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-list h4 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-item span {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .file-item button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            font-size: 12px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .file-item button:hover {
+            background-color: #e53935;
+        }
+
+        .file-item .edit-btn {
+            background-color: #4CAF50;
+            margin-right: 5px;
+        }
+
+        .file-item .edit-btn:hover {
+            background-color: #43A047;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .subject-box {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .file-list {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar"></div>
+    <h1>Assignment and Practicals</h1>
+
+    <div class="container">
+        <!-- DS (Data Structures) -->
+        <div class="subject-box">
+            <div class="upload-section">
+                <h3>1. DS (Data Structures)</h3>
+                <label for="ds-practical">Upload Practical:</label>
+                <input type="file" id="ds-practical" multiple>
+                <button onclick="uploadFiles('ds-practical', 'file-list-ds')">Upload</button>
+            </div>
+            <div class="file-list" id="file-list-ds">
+                <h4>Uploaded Files</h4>
+            </div>
+        </div>
+
+        <!-- DLCA (Digital Logic & Computer Architecture) -->
+        <div class="subject-box">
+            <div class="upload-section">
+                <h3>2. DLCA (Digital Logic & Computer Architecture)</h3>
+                <label for="dlca-practical">Upload Practical:</label>
+                <input type="file" id="dlca-practical" multiple>
+                <button onclick="uploadFiles('dlca-practical', 'file-list-dlca')">Upload</button>
+            </div>
+            <div class="file-list" id="file-list-dlca">
+                <h4>Uploaded Files</h4>
+            </div>
+        </div>
+
+        <!-- CG (Computer Graphics) -->
+        <div class="subject-box">
+            <div class="upload-section">
+                <h3>3. CG (Computer Graphics)</h3>
+                <label for="cg-practical">Upload Practical:</label>
+                <input type="file" id="cg-practical" multiple>
+                <button onclick="uploadFiles('cg-practical', 'file-list-cg')">Upload</button>
+            </div>
+            <div class="file-list" id="file-list-cg">
+                <h4>Uploaded Files</h4>
+            </div>
+        </div>
+
+        <!-- JAVA -->
+        <div class="subject-box">
+            <div class="upload-section">
+                <h3>4. JAVA</h3>
+                <label for="java-practical">Upload Practical:</label>
+                <input type="file" id="java-practical" multiple>
+                <button onclick="uploadFiles('java-practical', 'file-list-java')">Upload</button>
+            </div>
+            <div class="file-list" id="file-list-java">
+                <h4>Uploaded Files</h4>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function uploadFiles(inputId, fileListId) {
+            const inputElement = document.getElementById(inputId);
+            const fileListElement = document.getElementById(fileListId);
+            const files = inputElement.files;
+            
+            for (let i = 0; i < files.length; i++) {
+                const fileName = files[i].name;
+                
+                // Create a new file item
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <span>${fileName}</span>
+                    <div>
+                        <button class="edit-btn" onclick="editFile(this)">Edit</button>
+                        <button class="delete-btn" onclick="deleteFile(this)">Delete</button>
+                    </div>
+                `;
+                
+                // Add the new file item to the file list
+                fileListElement.appendChild(fileItem);
+            }
+            
+            // Clear the file input
+            inputElement.value = '';
+        }
+
+        function deleteFile(button) {
+            const fileItem = button.closest('.file-item');
+            fileItem.remove();
+        }
+
+        function editFile(button) {
+            const fileNameSpan = button.closest('.file-item').querySelector('span');
+            const newFileName = prompt('Edit file name:', fileNameSpan.textContent);
+            if (newFileName) {
+                fileNameSpan.textContent = newFileName;
+            }
+        }
+    </script>
+</body>
+</html>

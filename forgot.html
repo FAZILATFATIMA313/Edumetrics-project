@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password with OTP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: transparent;;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(18, 9, 9, 0.1);
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(50px);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #a09d9d;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: transparent;
+        }
+    .form-group input:hover{
+        background-color: #d6dedf;
+    }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color:  #191d5e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #252b95;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .message a {
+            color: #191d5e;
+            text-decoration: none;
+        }
+
+        .message a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hide sections by default */
+        #otp-section, #password-section {
+            display: none;
+        }
+
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            display: none;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .popup h3 {
+            margin: 0;
+            color: #191d5e;
+        }
+
+        .popup .close-btn {
+            margin-top: 10px;
+            background-color: #191d5e;
+            color: rgb(226, 226, 226);
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Reset Password</h2>
+    
+    <!-- Step 1: Enter Email -->
+    <form id="email-form" action="/send-otp" method="POST">
+        <div class="form-group">
+            <label for="email">Enter your email address</label>
+            <input type="email" id="email" name="email" placeholder="example@example.com" required>
+        </div>
+        <button type="submit" class="btn">Send OTP</button>
+    </form>
+
+    <!-- Step 2: Verify OTP -->
+    <form id="otp-section" action="/verify-otp" method="POST">
+        <div class="form-group">
+            <label for="otp">Enter the OTP sent to your email</label>
+            <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+        </div>
+        <button type="submit" class="btn">Verify OTP</button>
+    </form>
+
+    <!-- Step 3: Change Password -->
+    <form id="password-section" action="/change-password" method="POST">
+        <div class="form-group">
+            <label for="new-password">New Password</label>
+            <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm New Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password" required>
+        </div>
+        <button type="submit" class="btn">Change Password</button>
+    </form>
+
+    <div class="message">
+        <p>Back to login? <a href="Login.html">Login here</a></p>
+    </div>
+
+</div>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+    <h3>Password Changed Successfully</h3>
+    <button class="close-btn" onclick="closePopup()">Close</button>
+</div>
+<script>
+    // Mocking the behavior of moving through the steps
+    document.getElementById('email-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('otp-section').style.display = 'block';
+        document.getElementById('email-form').style.display = 'none';
+    });
+
+    document.getElementById('otp-section').addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('password-section').style.display = 'block';
+        document.getElementById('otp-section').style.display = 'none';
+    });
+     // Function to show the popup
+     function showPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
+
+    // Function to close the popup
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    // Simulate the form submission
+    document.getElementById('password-section').addEventListener('submit', function(e) {
+        e.preventDefault();  // Prevent the form from submitting for demonstration
+
+        // Assuming password change was successful, show popup
+        showPopup();
+    });
+</script>
+
+</body>
+</html>

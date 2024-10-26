@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <linkmeta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+ 
+    <title>Login</title>
+</head>
+<style>
+    /* POPPINS FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+*{  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+   
+}
+body{
+    background:url(pexels-katerina-holmes-5905443.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 110vh;
+    
+}
+.nav{
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background: linear-gradient(rgba(39,39,39, 0.6), transparent);
+    z-index: 100;
+}
+.nav-button .btn{
+    width: 130px;
+    height: 40px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+.btn:hover{
+    background: rgba(255, 255, 255, 0.3);
+}
+#registerBtn{
+    margin-left: 15px;
+}
+.btn.white-btn{
+    background: rgba(255, 255, 255, 0.7);
+}
+.btn.btn.white-btn:hover{
+    background: rgba(255, 255, 255, 0.5);
+}
+.nav-menu-btn{
+    display: none;
+}
+.form-box{
+    backdrop-filter: blur(10px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 512px;
+    height: 420px;
+    overflow: hidden;
+    z-index: 2;
+}
+.login-container{
+    position: absolute;
+    left: 4px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
+.register-container{
+    position: absolute;
+    right: -520px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
+.top span{
+    color: #fff;
+    font-size: small;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+.top span a{
+    font-weight: 500;
+    color: #fff;
+    margin-left: 5px;
+}
+header{
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0 30px 0;
+}
+.two-forms{
+    display: flex;
+    gap: 10px;
+}
+.input-field{
+    font-size:20px;
+    background: rgba(255, 255, 255, 0.333);
+    color: #fff;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px 0 45px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    transition: .2s ease;
+}
+.input-field:hover, .input-field:focus{
+    background: rgba(255, 255, 255, 0.25);
+}
+::-webkit-input-placeholder{
+    color: #fff;
+}
+.input-box i{
+    position: relative;
+    top: -35px;
+    left: 17px;
+    color: #fff;
+}
+.submit{
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.submit:hover{
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+.two-col{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: small;
+    margin-top: 10px;
+}
+.two-col .one{
+    display: flex;
+    gap: 5px;
+}
+.two label a{
+    text-decoration: none;
+    color: #fff;
+}
+.two label a:hover{
+    text-decoration: underline;
+}
+/* Default Styles (for larger screens) */
+
+/* Media Queries for Responsive Design */
+
+/* For screens up to 1024px */
+@media only screen and (max-width: 1024px) {
+    .form-box {
+        width: 90%;
+        height: 500px;
+    }
+
+    .logo-container span {
+        font-size: 20px;
+    }
+
+    .logo-container i {
+        font-size: 28px;
+    }
+
+    .nav-button .btn {
+        width: 120px;
+        height: 35px;
+    }
+
+    .input-field {
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .submit {
+        height: 40px;
+    }
+}
+
+/* For screens up to 768px */
+@media only screen and (max-width: 768px) {
+    .form-box {
+        width: 100%;
+        height: 500px;
+    }
+
+    .login-container, .register-container {
+        width: 100%;
+    }
+
+    .input-field {
+        font-size: 18px;
+        height: 45px;
+    }
+
+    .logo-container span {
+        font-size: 18px;
+    }
+
+    .logo-container i {
+        font-size: 25px;
+    }
+
+    .wrapper {
+        min-height: 100vh;
+        padding: 0 20px;
+    }
+
+    .nav {
+        height: 80px;
+        line-height: 80px;
+    }
+
+    .nav-button .btn {
+        width: 110px;
+        height: 35px;
+    }
+
+    .submit {
+        height: 40px;
+    }
+}
+
+/* For screens up to 540px */
+@media only screen and (max-width: 540px) {
+    .wrapper {
+        min-height: 100vh;
+    }
+
+    .form-box {
+        width: 100%;
+        height: 550px;
+    }
+
+    .register-container, .login-container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .register-container .two-forms {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .logo-container span {
+        font-size: 16px;
+    }
+
+    .logo-container i {
+        font-size: 20px;
+    }
+
+    .input-field {
+        font-size: 16px;
+        height: 40px;
+    }
+
+    .submit {
+        height: 40px;
+    }
+
+    .nav {
+        height: 70px;
+        line-height: 70px;
+    }
+
+    .nav-button .btn {
+        width: 100px;
+        height: 30px;
+    }
+}
+
+
+        /* EDUMETRICS Icon and Text Styling */
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .logo-container i {
+            font-size: 32px;
+            color: white;
+            margin-left: 8px;
+        }
+        .logo-container span {
+            font-size: 24px;
+            color:  white;
+            font-weight: bold;
+        }
+</style>
+<body>
+     <!-- EDUMETRICS Logo at the top right -->
+     <div class="logo-container">
+        <i class='bx bxs-school'></i> <!-- College building icon -->
+        <span>EDUMETRICS</span>
+    </div>
+    
+    <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            
+        </div>
+      
+        <div class="nav-button">
+            <button class="btn white-btn" id="loginBtn" onclick="login()">Student</button>
+           <button class="btn" id="registerBtn" onclick="register()">Admin</button>
+        </div>
+    </nav>
+
+<!----------------------------- Form box ----------------------------------->    
+    <div class="form-box">
+        
+        <!------------------ form -------------------------->
+
+        <div class="login-container" id="login">
+            <form action="login.php" method="post">
+            <div class="top">
+                <span>Don't have an account?  <a href="register.html">register</a></span>
+                <header>Login</header>
+            </div>
+            
+            <div class="input-box">
+                <input type="text" class="input-field" name="email" placeholder="Username or Email" required>
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" name="password" placeholder="Password" required>
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+               <a href="home page.html"><input type="submit" class="submit" value="Sign In"></a> 
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="forgot.html">Forgot password?</a></label>
+                </div>
+            </div>
+        </div>
+    </form>
+        <!------------------- Admin form -------------------------->
+        <div class="register-container" id="register">
+            <div class="top">
+                
+                <header>Login</header>
+            </div>
+            
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Username or Email" required>
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password" required>
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+              <a href="admin.html">  <input type="submit" class="submit" value="Sign In"></a>
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="register-check">
+                    <label for="register-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="forgot.html">Forgot password?</a></label>
+                
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>   
+
+<script>
+
+    var a = document.getElementById("loginBtn");
+    var b = document.getElementById("registerBtn");
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+
+    function login() {
+        x.style.left = "4px";
+        y.style.right = "-520px";
+        a.className += " white-btn";
+        b.className = "btn";
+        x.style.opacity = 1;
+        y.style.opacity = 0;
+    }
+
+    function register() {
+        x.style.left = "-510px";
+        y.style.right = "5px";
+        a.className = "btn";
+        b.className += " white-btn";
+        x.style.opacity = 0;
+        y.style.opacity = 1;
+    }
+
+</script>
+
+</body>
+</html>

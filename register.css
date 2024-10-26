@@ -1,0 +1,97 @@
+
+*{  
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+  font-family: 'Poppins', sans-serif;
+ 
+}
+body{
+  background-image:url(image.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow:auto;
+ 
+}
+
+.container {  
+   width: 700px;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 50px 50px;  
+  background-color:transparent;
+ color:rgb(255, 255, 255);
+ border-color: gray;
+ backdrop-filter: blur(10px);
+ 
+
+}  
+  
+input[type=text], input[type=password], textarea {  
+    font-size:20px;
+    width: 100%;  
+  padding: 15px;  
+  margin: 5px 0 22px 0;  
+  border-radius: 30px;
+  display: inline-block;  
+  
+  background: rgba(255, 255, 255, 0.531);  
+}  
+input[type=text]:focus, input[type=password]:focus {  
+  background-color: rgb(212, 206, 197);  
+  outline: none;  
+}  
+ div {  
+ padding: 10px 0;  
+}  
+hr {  
+  border: 1px solid #e3e3e3d4;  
+  margin-bottom: 25px;  
+}  
+.registerbtn {  
+  background-color: rgba(212, 206, 197, 0.895) ;  
+  color: white;  
+  padding: 16px 20px;  
+  margin: 8px 0;  
+  border: none;  
+  border-radius: 30px;
+  cursor: pointer;  
+  width: 100%;  
+  opacity: 0.9;  
+  font-size: 25px;
+}  
+.registerbtn:hover {  
+  opacity: 1;  
+}  
+.option{
+    font-size:25px;
+   
+}
+.option select{
+    border-radius: 30px;
+    cursor: pointer;  
+   font-size: 20px;
+   color: rgb(18, 18, 18);
+   
+} 
+ /* EDUMETRICS Icon and Text Styling */
+ .logo-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+}
+.logo-container i {
+  font-size: 32px;
+  color: white;
+  margin-left: 8px;
+}
+.logo-container span {
+  font-size: 24px;
+  color:  white;
+  font-weight: bold;
+}
+
+

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+  
+<style>
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.sidebar{
+    position:fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 88px;
+    background-color:rgb(101, 101, 114);
+    padding: 0.4rem 0.8rem;
+    transition: all 0.5 ease;
+}
+.sidebar.active~ .main-content{
+    left:250px;
+    width: calc(100%-250px);
+}
+.sidebar.active{
+    width: 250px;
+}
+.sidebar #btn{
+    position: absolute;
+    top:.4rem;
+    left: 50%;
+    font-size: 1.4rem;
+    line-height: 50px;
+    transform: translateX(-50%);
+    cursor: pointer;
+    
+}
+.sidebar.active #btn{
+    left: 90%;
+}
+.sidebar .top .logo{
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    color: white;
+   
+}
+.sidebar.active .top .logo{
+    opacity: 1;
+}
+.top .logo i{
+    color: rgb(255, 255, 255);
+    
+    margin-left: 50px;
+}
+.bold{
+    font-weight: 600;
+}
+.sidebar p{
+    opacity: 0;
+}
+.sidebar.active p{
+    opacity: 1;
+}
+.sidebar ul li{
+    position: relative;
+    list-style-type: none;
+    height: 50px;
+    width: 90%;
+    margin: 0.8rem auto;
+    line-height: 50px;
+}
+.sidebar ul li a{
+    color: rgb(195, 206, 206);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 0.8rem;
+}
+.sidebar ul li a:hover{
+    background-color: white;
+    color: rgb(195, 206, 206);
+}
+.sidebar ul li a i{
+    min-width: 50px;
+    text-align: center;
+    height: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+}
+.sidebar .nav-item{
+    opacity: 0;
+}
+.sidebar.active .nav-item{
+    opacity: 1;
+}
+.sidebar ul li .tooltip{
+    position: absolute;
+    left: 120px;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0.5rem 0.8rem #18131348;
+    border-radius: .8rem;
+    padding: .4rem 1.2rem;
+    line-height: 1.8rem;
+    z-index: 20;
+    opacity: 0;
+}
+.sidebar ul li:hover .tooltip{
+    opacity: 1;
+}
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+
+        /* EDUMETRICS Icon and Text Styling */
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .logo-container i {
+            font-size: 32px;
+            color: rgb(82, 82, 176);
+            margin-right: 8px;
+        }
+        .logo-container span {
+            font-size: 24px;
+            color:  rgb(82, 82, 176);
+            font-weight: bold;
+        }
+        @media(max-width: 767px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                height: auto;
+            }
+
+            nav, main, aside {
+                height: auto;
+            }
+        }
+</style>
+</head>
+<body>
+      <!-- EDUMETRICS Logo at the top right -->
+      <div class="logo-container">
+        <i class='bx bxs-school'></i> <!-- College building icon -->
+        <span>EDUMETRICS</span>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="top">
+            <div class="logo">
+                <i class="bx bx-arch"></i>
+                <span>EDUMETRICS</span>
+            </div>
+        <i class="bx bx-menu" id="btn"></i>
+        </div>
+       
+        <div class="user">
+        </div>
+   
+        <ul>
+            <li>
+                <a href="home page.html">
+                 <i class="bx bx-home"></i>
+                 <span class="nav-item">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li>
+                <a href="profile.html">
+                 <i class="bx bx-face"></i>
+                 <span class="nav-item">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li>
+                <a href="work.html">
+                 <i class="bx bx-file"></i>
+                 <span class="nav-item">Work</span>
+            </a>
+            <span class="tooltip">Work</span>
+
+            </li>
+             <li>
+                <a href="result.html">
+                 <i class="bx bx-book-content"></i>
+                 <span class="nav-item">Result</span>
+                </a>
+                <span class="tooltip">Result</span>
+
+                <li>
+                    <a href="attendence.html">
+                     <i class="bx bx-clipboard"></i>
+                     <span class="nav-item">Attendence</span>
+                    </a>
+                    <span class="tooltip">Attendence</span>
+    
+                </li>
+             <li>
+                <a href="calender.html">
+                 <i class="bx bx-calendar"></i>
+                 <span class="nav-item">Calender</span>
+                </a>
+                <span class="tooltip">Calender</span>
+
+            </li>
+             <li>
+                <a href="settings.html">
+                 <i class="bx bx-cog"></i>
+                 <span class="nav-item">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+
+            </li> 
+            <li>
+                <a href="Login.html">
+                 <i class="bx bx-log-out"></i>
+                 <span class="nav-item">Logout</span>
+                </a>
+                <span class="tooltip">Logout</span>
+
+            </li>
+        </ul>
+  
+        <script>
+            let btn = document.querySelector('#btn');
+            let sidebar = document.querySelector('.sidebar');
+            
+            btn.onclick=function (){
+                sidebar.classList.toggle('active');
+            };
+            
+            </script>
+            </div>
+
+</body>
+</html>

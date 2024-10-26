@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            height: 100vh;
+            background: #f0f2f5;
+            color: #333;
+        }
+
+        .sidebar {
+            background-color: #004d40;
+            width: 250px;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #00796b;
+        }
+
+        .sidebar ul ul {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul ul a {
+            font-size: 16px;
+            padding-left: 15px;
+        }
+
+        .sidebar ul li.active > ul {
+            display: block;
+        }
+
+        .main-content {
+            padding: 20px;
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .header {
+            background-color: #00796b;
+            color: #fff;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header .user-info {
+            font-size: 16px;
+        }
+
+        .section {
+            display: none;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        h2 {
+            color: #00796b;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+            }
+
+            .sidebar ul li a {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="#" class="sidebar-link" data-tab="home"><i class="fas fa-home"></i> Home</a></li>
+            <li>
+                <a href="#" class="sidebar-link" data-tab="student-details"><i class="fas fa-user-graduate"></i> Student Details</a>
+                <ul>
+                    
+                    <li><a href="#" class="sidebar-link" data-tab="search-sem-branch"><i class="fas fa-filter"></i> Search Students by Semester/Branch</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="sidebar-link" data-tab="result-attendance"><i class="fas fa-clipboard-list"></i> Result and Attendance</a>
+                <ul>
+                    <li><a href="#" class="sidebar-link" data-tab="result-upload"><i class="fas fa-upload"></i> Upload Result</a></li>
+                    <li><a href="#" class="sidebar-link" data-tab="attendance-upload"><i class="fas fa-upload"></i> Upload Attendance</a></li>
+                    <li><a href="#" class="sidebar-link" data-tab="timetable-calendar"><i class="fas fa-calendar"></i> Upload Timetable & Calendar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="sidebar-link" data-tab="student-updates"><i class="fas fa-bell"></i> Student Updates</a>
+                <ul>
+                    <li><a href="#" class="sidebar-link" data-tab="grievance-form"><i class="fas fa-briefcase"></i> View Student Grievances</a></li>
+                    <li><a href="#" class="sidebar-link" data-tab="announcements"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="sidebar-link" data-tab="account-manage"><i class="fas fa-cogs"></i> Account Manage</a></li>
+            <li><a href="#" class="sidebar-link" data-tab="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+            <div class="user-info">Welcome, Admin</div>
+        </div>
+
+        <!-- Sections (Initially Hidden) -->
+        <div id="home" class="section active">
+            <h2>Welcome to the Admin Dashboard</h2>
+            <p>Here you can control various functionalities related to student management, such as uploading assignments, viewing attendance, posting announcements, and more.</p>
+        </div>
+
+        <!-- Student Details Category -->
+        
+        <div id="search-sem-branch" class="section">
+            <h2>Search Students by Semester and Branch</h2>
+            <form action="/search" method="get">
+                <label for="semester">Semester:</label>
+                <select id="semester" name="semester" required>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+                </select>
+
+                <label for="branch">Branch:</label>
+                <select id="branch" name="branch" required>
+                    <option value="Computer (AIML)">Computer (AIML)</option>
+                    <option value="Computer Data Science">Computer Data Science</option>
+                    <option value="Civil">Civil</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="ECS">Electronics and Communication Engineering</option>
+                </select>
+<label for="announcement-title">Roll No:</label>
+                <input type="text" id="roll no" name="roll no" required>
+
+
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Result and Attendance Category -->
+        <div id="result-upload" class="section">
+    <h2>Upload Result</h2>
+    <form action="upload_result.php" method="post" enctype="multipart/form-data">
+        <label for="result-file">Select Result File (PDF):</label>
+        <input type="file" id="result-file" name="result-file" accept=".pdf" required>
+        <button type="submit">Upload</button>
+    </form>
+</div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 4px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container input, .form-container select {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="attendance-upload" class="section">
+    <h2>Upload Attendance</h2>
+    <div class="form-container">
+        <form id="attendanceForm">
+            <label for="rollNumber">Roll Number:</label>
+            <input type="text" id="rollNumber" name="rollNumber" placeholder="e.g., 23DS01" required>
+            <label for="month">Month:</label>
+            <select id="month" name="month" required>
+                <option value="june">June</option>
+                <option value="july">July</option>
+                <option value="august">August</option>
+                <option value="september">September</option>
+                <option value="october">October</option>
+                <option value="november">November</option>
+            </select>
+            <label for="date">Date:</label>
+            <input type="number" id="date" name="date" min="1" max="31" required>
+            <label for="subject">Subject:</label>
+            <select id="subject" name="subject" required>
+                <option value="maths">Maths</option>
+                <option value="cg">CG</option>
+                <option value="dlca">DLCA</option>
+                <option value="dsgt">DSGT</option>
+                <option value="java">JAVA</option>
+            </select>
+            <label>Attendance:</label>
+            <input type="radio" id="present" name="attendance" value="P" checked>
+            <label for="present">P</label>
+            <input type="radio" id="absent" name="attendance" value="A">
+            <label for="absent">A</label>
+            <button type="button" onclick="updateAttendance()">Update</button>
+        </form>
+    </div>
+
+    <div id="attendanceTables"></div>
+
+    <script>
+        const subjects = ['Maths', 'CG', 'DLCA', 'DSGT', 'JAVA'];
+
+        function createAttendanceTable(month, days) {
+            const table = document.createElement('table');
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>Date</th>
+                        ${subjects.map(subject => <th>${subject}</th>).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+
+            for (let rollNo = 1; rollNo <= 62; rollNo++) {
+                let formattedRollNo = '23DS' + (rollNo < 10 ? '0' : '') + rollNo;
+                for (let day = 1; day <= days; day++) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = <td>${formattedRollNo}</td><td>${day}</td>;
+                    subjects.forEach(subject => {
+                        const cellId = ${month}-${formattedRollNo}-${day}-${subject.toLowerCase()};
+                        row.innerHTML += `
+                            <td id="${cellId}">
+                                <input type="radio" name="${cellId}" value="P">P
+                                <input type="radio" name="${cellId}" value="A">A
+                            </td>`;
+                    });
+                    table.appendChild(row);
+                }
+            }
+            table.innerHTML += </tbody>;
+            document.getElementById('attendanceTables').appendChild(table);
+        }
+
+        const monthDays = {
+            june: 30,
+            july: 31,
+            august: 31,
+            september: 30,
+            october: 31,
+            november: 30,
+        };
+
+        Object.keys(monthDays).forEach(month => {
+            createAttendanceTable(month, monthDays[month]);
+        });
+
+        function updateAttendance() {
+            const rollNumber = document.getElementById('rollNumber').value;
+            const month = document.getElementById('month').value;
+            const date = document.getElementById('date').value;
+            const subject = document.getElementById('subject').value;
+            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+
+            if (!rollNumber || !date || !subject) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            const cellId = ${month}-${rollNumber}-${date}-${subject.toLowerCase()};
+            const cell = document.getElementById(cellId);
+
+            if (cell) {
+                cell.innerHTML = '';
+                cell.innerHTML += <input type="radio" name="${cellId}" value="P" ${attendance === 'P' ? 'checked' : ''}>P;
+                cell.innerHTML += <input type="radio" name="${cellId}" value="A" ${attendance === 'A' ? 'checked' : ''}>A;
+            } else {
+                alert('Invalid roll number, date, or subject.');
+            }
+        }
+    </script>
+</div>
+
+
+
+
+
+        <div id="timetable-calendar" class="section">
+            <h2>Upload Timetable & Calendar</h2>
+            <form action="/upload-timetable" method="post" enctype="multipart/form-data">
+                <label for="timetable">Select Timetable & Calendar File (PDF):</label>
+                <input type="file" id="timetable" name="timetable" accept=".pdf" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <!-- Student Updates Category -->
+        <div id="grievance-form" class="section">
+            <h2>View Student Grievances</h2>
+            <p>List of student grievances will be displayed here.</p>
+        </div>
+
+        <div id="announcements" class="section">
+            <h2>Announcements</h2>
+            <form action="/post-announcement" method="post">
+                <label for="announcement-title">Title:</label>
+                <input type="text" id="announcement-title" name="announcement-title" required>
+
+                <label for="announcement-body">Body:</label>
+                <textarea id="announcement-body" name="announcement-body" required></textarea>
+
+                <button type="submit">Post Announcement</button>
+            </form>
+        </div>
+
+        <!-- Account Manage -->
+        <div id="account-manage" class="section">
+            <h2>Manage Account</h2>
+            <p>Manage admin account details here.</p>
+
+            <h3>Change Password</h3>
+            <form action="/change-password" method="post">
+                <label for="old-password">Old Password:</label>
+                <input type="password" id="old-password" name="old-password" required>
+
+                <label for="new-password">New Password:</label>
+                <input type="password" id="new-password" name="new-password" required>
+
+                <button type="submit">Change Password</button>
+            </form>
+
+            <h3>Privacy Policy</h3>
+            <p>You can view and edit the privacy policy here.</p>
+            <button>View Privacy Policy</button>
+        </div>
+
+        <!-- Logout -->
+        <div id="logout" class="section">
+            <h2>Logout</h2>
+          <a href="Login.html"> <button>Logout</button></a>
+        </div>
+    </div>
+
+    <script>
+        // Tab navigation functionality
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        const sections = document.querySelectorAll('.section');
+
+        // Hide all sections except home on page load
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById('home').classList.add('active');
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const tab = link.getAttribute('data-tab');
+
+                // Check if the clicked link has a parent category
+                if (link.nextElementSibling && link.nextElementSibling.tagName === 'UL') {
+                    link.parentElement.classList.toggle('active');
+                } else {
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+
+                    document.getElementById(tab).classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

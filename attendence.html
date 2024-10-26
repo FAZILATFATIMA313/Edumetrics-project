@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="nav.js"></script>
+    <title>Attendance</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .dropdown-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #191d5e;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            z-index: 1;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown-button.active + .dropdown-content {
+            display: block;
+        }
+        .monthTable {
+            display: none;
+            margin-top: 20px;
+        }
+        .monthTable h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #191d5e;
+            padding-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #191d5e;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar"></div>
+<div class="container">
+    <h2>Student Attendance Worksheet</h2>
+
+    <div class="dropdown">
+        <button class="dropdown-button" onclick="toggleDropdown()">Select Month</button>
+        <div class="dropdown-content" id="monthDropdown">
+            <a href="#" onclick="showMonth('june')">June</a>
+            <a href="#" onclick="showMonth('july')">July</a>
+            <a href="#" onclick="showMonth('august')">August</a>
+            <a href="#" onclick="showMonth('september')">September</a>
+            <a href="#" onclick="showMonth('october')">October</a>
+            <a href="#" onclick="showMonth('november')">November</a>
+        </div>
+    </div>
+
+    <!-- Table for June -->
+    <div id="june" class="monthTable">
+        <h3>June</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Maths</th>
+                    <th>CG</th>
+                    <th>DLCA</th>
+                    <th>DSGT</th>
+                    <th>JAVA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    const subjects = ['Maths', 'CG', 'DLCA', 'DSGT', 'JAVA'];
+                    for (let day = 1; day <= 30; day++) {
+                        document.write('<tr>');
+                        document.write('<td>' + day + '</td>');
+                        subjects.forEach(subject => document.write('<td>P</td>')); // Example data
+                        document.write('</tr>');
+                    }
+                </script>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Table for July -->
+    <div id="july" class="monthTable">
+        <h3>July</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Maths</th>
+                    <th>CG</th>
+                    <th>DLCA</th>
+                    <th>DSGT</th>
+                    <th>JAVA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    for (let day = 1; day <= 31; day++) {
+                        document.write('<tr>');
+                        document.write('<td>' + day + '</td>');
+                        subjects.forEach(subject => document.write('<td>A</td>')); // Example data
+                        document.write('</tr>');
+                    }
+                </script>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Table for August -->
+    <div id="august" class="monthTable">
+        <h3>August</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Maths</th>
+                    <th>CG</th>
+                    <th>DLCA</th>
+                    <th>DSGT</th>
+                    <th>JAVA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    for (let day = 1; day <= 31; day++) {
+                        document.write('<tr>');
+                        document.write('<td>' + day + '</td>');
+                        subjects.forEach(subject => document.write('<td>A</td>')); // Default to Absent
+                        document.write('</tr>');
+                    }
+                </script>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Table for September -->
+    <div id="september" class="monthTable">
+        <h3>September</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Maths</th>
+                    <th>CG</th>
+                    <th>DLCA</th>
+                    <th>DSGT</th>
+                    <th>JAVA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table left blank -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Table for October -->
+    <div id="october" class="monthTable">
+        <h3>October</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Maths</th>
+                    <th>CG</th>
+                    <th>DLCA</th>
+                    <th>DSGT</th>
+                    <th>JAVA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table left blank -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Table for November -->
+    <div id="november" class="monthTable">
+        <h3>November</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Maths</th>
+                    <th>CG</th>
+                    <th>DLCA</th>
+                    <th>DSGT</th>
+                    <th>JAVA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table left blank -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function showMonth(month) {
+        document.querySelectorAll('.monthTable').forEach(table => {
+            table.style.display = 'none'; // Hide all tables
+        });
+        document.getElementById(month).style.display = 'block'; // Show the selected table
+    }
+
+    function toggleDropdown() {
+        const dropdownContent = document.getElementById('monthDropdown');
+        dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function(event) {
+        const dropdownButton = document.querySelector('.dropdown-button');
+        const dropdownContent = document.getElementById('monthDropdown');
+        if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+            dropdownContent.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
